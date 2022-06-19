@@ -1,45 +1,29 @@
-# ENABLE_LANGUAGE(ASM)
+cmake_minimum_required(VERSION 2.8.12)
+
+project(AkdWork)
+option(AkdBODY "" ON)
+option(AkdFACE "" ON)
+ADD_DEFINITIONS(-DlibAkd_EXPORT)
+
+SET(CMAKE_CXX_FLAGS "-std=c++11 -pthread ${CMAKE_CXX_FLAGS} ")
+if(POLICY CMP0025)
+    # reference from https://cmake.org/cmake/help/latest/policy/CMP0025.html
+    cmake_policy(SET CMP0025 NEW)
+endif()
 
 
-cmake_minimum_required(VERSION 3.4.1)
-project(YzFaceWork)
-option(YzFaceWork_OPENMP "openmp support" ON)
-
-option(YzFaceWork_CMAKE_VERBOSE "print verbose cmake messages" OFF)
-option(YzFaceWork_VULKAN "vulkan compute support" OFF)
-option(YzFaceWork_AVX2 "optimize x86 platform with avx2" OFF)
-option(YzFaceWork_COVERAGE "build for coverage" OFF)
-
-option(WITH_CUDA "build benchmark" ON)
-option(FEISI "build feisi interface" ON)
-option(YzFace "build yzFace interface" ON)
-option(YzBody "build yzbody interface" ON)
-option(YzHead "build yzbody interface" ON)
-option(YzSafeHat "build yzbody interface" ON)
-option(YzOCR "build yzbody interface" ON)
-option(YzCount "build yzbody interface" ON)
-option(YzOCR_paddle "build yzbody interface" OFF)
-ADD_DEFINITIONS(-DlibYz_EXPORTS)
-
-
-
-option(OPENCV "minimal opencv structure emulation" ON)
-
-#include(cmake/utils.cmake)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+find_package(OpenMP)  
+if(OPENMP_FOUND)
+message("OPENMP FOUND")
+else()
+message("OPENMP NOT FOUND")
+endif()
 
 include(cmake/ncnn.cmake)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
+include("./akdbody.cmake")
+include("./akdface.cmake")
 
-include("./yzbody.cmake")
-include("./yzhead.cmake")
-include("./yzheadcount.cmake")
-include("./yzhelmet.cmake")
-include("./yzface.cmake")
-#include("./yzocr.cmake")
-if(${MSVC_TOOLSET_VERSION} MATCHES "142")
-include("./yzocr_paddle.cmake")
-endif()
-add_subdirectory(demo)
-add_subdirectory(Tools)
+add_subdirectory(example)
+add_subdirectory(app)
