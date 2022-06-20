@@ -1,12 +1,4 @@
-if(AkdFACE)
-# if(OPENCV)
-#     ADD_DEFINITIONS(-DWITH_OpenCV)
-#     # 设置opencv的静态库
-#     # set(OpenCV_STATIC ON)
-    # set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../3rd/cv343_world")
-    # find_package(OpenCV REQUIRED)
-    
-# endif()
+if(FACE)
 if(1)
     ADD_DEFINITIONS(-DWITH_CUDA)
     include(cmake/cuda.cmake)
@@ -20,7 +12,7 @@ if(1)
 endif()
 #
 include(cmake/utils.cmake)
-set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../3rd/opencv/lib/cmake/opencv4")
+set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../3rd/opencv/cv450_world")
 
 find_package(OpenCV REQUIRED)
 set(cvlib ${OpenCV_LIBS})
@@ -60,15 +52,15 @@ file(GLOB native_srcs__tmp
     set_property(GLOBAL PROPERTY USE_FOLDERS ON)
     set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "cmake")
     # include_directories(${OpenCV_INCLUDE_DIRS})
-    my_add_library( AkdFace SHARED ${native_srcsakdface} )
-    set_property(TARGET AkdFace PROPERTY FOLDER "AkdFace")
+    my_add_library( Face SHARED ${native_srcsakdface} )
+    set_property(TARGET Face PROPERTY FOLDER "Face")
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
     ADD_DEFINITIONS(-D_AMD64_)
     ADD_DEFINITIONS(-DOMP_WAIT_POLICY="passive")
 
 
     target_link_libraries( # Specifies the target library.
-            AkdFace
+            Face
             ncnn
             ${cvlib}
             #${CUBLAS_LIBRARIES}
@@ -77,7 +69,7 @@ file(GLOB native_srcs__tmp
     )
 
    # target_include_directories(YzBody PRIVATE ${OpenCV_INCLUDE_DIRS})
-    install(TARGETS AkdFace EXPORT AkdFace LIBRARY  DESTINATION lib)
+    install(TARGETS Face EXPORT Face LIBRARY  DESTINATION lib)
  
         #install(FILES
             #${CMAKE_INSTALL_PREFIX}/lib/AkdBody.lib

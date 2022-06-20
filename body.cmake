@@ -1,4 +1,4 @@
-if(AkdBODY)
+if(BODY)
 # if(OPENCV)
 #     ADD_DEFINITIONS(-DWITH_OpenCV)
 #     # 设置opencv的静态库
@@ -20,7 +20,7 @@ if(1)
 endif()
 #
 include(cmake/utils.cmake)
-set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../3rd/opencv/lib/cmake/opencv4")
+set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/../3rd/opencv/cv450_world")
 
 find_package(OpenCV REQUIRED)
 set(cvlib ${OpenCV_LIBS})
@@ -63,15 +63,15 @@ file(GLOB native_srcs__tmp
     set_property(GLOBAL PROPERTY USE_FOLDERS ON)
     set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "cmake")
     # include_directories(${OpenCV_INCLUDE_DIRS})
-    my_add_library( AkdBody SHARED ${native_srcsakdbody} )
-    set_property(TARGET AkdBody PROPERTY FOLDER "AkdBody")
+    my_add_library( Body SHARED ${native_srcsakdbody} )
+    set_property(TARGET Body PROPERTY FOLDER "Body")
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS)
     ADD_DEFINITIONS(-D_AMD64_)
     ADD_DEFINITIONS(-DOMP_WAIT_POLICY="passive")
 
 
     target_link_libraries( # Specifies the target library.
-            AkdBody
+            Body
             ncnn
             ${cvlib}
             #${CUBLAS_LIBRARIES}
@@ -81,7 +81,7 @@ file(GLOB native_srcs__tmp
     )
 
    # target_include_directories(YzBody PRIVATE ${OpenCV_INCLUDE_DIRS})
-    install(TARGETS AkdBody EXPORT AkdBody LIBRARY  DESTINATION lib)
+    install(TARGETS Body EXPORT Body LIBRARY  DESTINATION lib)
  
         #install(FILES
             #${CMAKE_INSTALL_PREFIX}/lib/AkdBody.lib

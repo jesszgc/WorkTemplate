@@ -14,11 +14,11 @@
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 include(../cmake/demo_utils.cmake)
-     akdbodyi_add_example(bodytest)
-     akdbodyi_add_example(posetest)
+     bodyi_add_example(bodytest)
+     bodyi_add_example(posetest)
 
-     akdfacei_add_example(facetest)
-
+     facei_add_example(facetest)
+     cv_add_example(cvtest)
 
 
 

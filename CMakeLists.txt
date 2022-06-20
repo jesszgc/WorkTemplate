@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8.12)
 
-project(AkdWork)
-option(AkdBODY "" ON)
-option(AkdFACE "" ON)
-ADD_DEFINITIONS(-DlibAkd_EXPORT)
+project(WorkTemplate)
+option(BODY "" ON)
+option(FACE "" ON)
+ADD_DEFINITIONS(-Dlib_EXPORT)
 
 SET(CMAKE_CXX_FLAGS "-std=c++11 -pthread ${CMAKE_CXX_FLAGS} ")
 if(POLICY CMP0025)
@@ -22,8 +22,8 @@ endif()
 include(cmake/ncnn.cmake)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-include("./akdbody.cmake")
-include("./akdface.cmake")
+include("./body.cmake")
+include("./face.cmake")
 
 add_subdirectory(example)
 add_subdirectory(app)

@@ -1,5 +1,5 @@
-#ifndef YZCOMMON_H
-#define YZCOMMON_H
+#ifndef COMMON_H
+#define COMMON_H
 #include <cstring>
 #include <string>
 #include <vector>
@@ -252,5 +252,26 @@ struct DetectClassyoutdata {
 
 	std::vector<ObjProperty> properties{};
 };
-
+struct akdData {
+	void* data = nullptr;
+	int num;
+	std::vector<void*> ptr;
+	std::vector<int> widths;
+	std::vector<int> heights;
+	std::vector<int> channels;
+	std::vector<int> step;
+	std::vector<int> datatype;
+	//    int inferw;
+	//    int inferh;
+	int clean()
+	{
+		ptr.clear();
+		widths.clear();
+		heights.clear();
+		channels.clear();
+		step.clear();
+		datatype.clear();
+		num = 0;
+	}
+};
 #endif

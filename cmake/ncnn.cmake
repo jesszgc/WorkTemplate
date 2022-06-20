@@ -11,15 +11,15 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 # using Visual Studio C++
 	message(${MSVC_TOOLSET_VERSION})
-	#if(${MSVC_TOOLSET_VERSION} MATCHES "142")
+	if(${MSVC_TOOLSET_VERSION} MATCHES "142")
 	
-	#set(NCNN_DIR "${CMAKE_SOURCE_DIR}/../3rd/ncnn/ncnn_vulkan_20210720/vc16")
-	#endif()
+	set(NCNN_DIR "${CMAKE_SOURCE_DIR}/../3rd/ncnn/ncnn_vulkan_20210720/vc16")
+	endif()
 
-	#if(${MSVC_TOOLSET_VERSION} MATCHES "140")
+	if(${MSVC_TOOLSET_VERSION} MATCHES "140")
 	
-	#set(NCNN_DIR "${CMAKE_SOURCE_DIR}/../3rd/ncnn/ncnn_vulkan_20210720/vc14")
-	#endif()
+	set(NCNN_DIR "${CMAKE_SOURCE_DIR}/../3rd/ncnn/ncnn_vulkan_20210720/vc14")
+	endif()
 
 endif()
 

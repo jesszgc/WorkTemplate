@@ -1,5 +1,5 @@
-#include"YzComm.h"
-#include"services/CudaHelper.h"
+#include"Comm.h"
+#include"3rdwrap/cuda/CudaService.h"
 YzData::~YzData()
 {
 	if (im_bgrchar_gpu != nullptr) {

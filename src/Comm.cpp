@@ -1,4 +1,4 @@
-#include"YzComm.h"
+#include"Comm.h"
 #include<iostream>
 
 cvmat::cvmat()
